@@ -6,6 +6,8 @@ M1 implements durable documents with conflict handling. See the baseline verific
 
 Full spec: [docs/PRD.md](docs/PRD.md).
 
+See [docs/architecture.md](docs/architecture.md) for the code layout, the traced save workflow, invariants, and the differences between the PRD and the code. Instructions for coding agents are in [CLAUDE.md](CLAUDE.md).
+
 ## Requirements
 
 Python 3.12. Standard library only. No build step, no packages, no network.

@@ -2,6 +2,8 @@
 
 Status legend: **[Implemented M1]** is implemented in this repository. See the [baseline verification](../README.md#baseline-verification) for observed checks. **[Planned]** is future work with no code.
 
+How the baseline is built, what was re-checked against the source, and where this document and the code differ is recorded in [architecture.md](architecture.md).
+
 ## 1. Intended user and workflow
 
 One developer on one machine. They need to inspect and edit big text or log files in a browser without sending the content anywhere. The app runs as a local Python process bound to `127.0.0.1`. There is no sign-in, sync or remote service.

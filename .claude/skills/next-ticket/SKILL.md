@@ -1,6 +1,6 @@
 ---
 name: next-ticket
-description: Owner-started driver that takes one ticket of epic #1 up to a ready pull request. Starting it is the owner's go signal.
+description: Owner-started driver that takes one ticket of epic #1 up to a ready pull request (draft first, ready only on green CI). Starting it is the owner's go signal.
 argument-hint: "[issue number]"
 disable-model-invocation: true
 ---
@@ -18,7 +18,7 @@ Labels: `status:ready`, `status:blocked`, `status:in-progress`, `needs-decision`
 3. **Claim.** Label the issue `status:in-progress`.
 4. **Branch in a fresh worktree** from the tip of `origin/main`, named `<type>/<issue-number>-<short-slug>` as `CLAUDE.md` ("Git workflow") says: `git fetch origin` then `git worktree add ../<repo>-<issue-number> -b <branch> origin/main`. Never work on `main`.
 5. **Run the `implement-ticket` playbook** (`.claude/skills/implement-ticket/SKILL.md`) in that worktree for the one ticket.
-6. **Finish.** When the review gate, the acceptance gate and CI are green, mark the pull request ready (`gh pr ready`; the gate hook allows it only after the gate roles ran) and comment on the issue with the pull request link and the evidence summary. Do not merge. Only the owner merges.
+6. **Finish.** The playbook opens the draft pull request only after local checks, the review gate and the acceptance gate passed. When CI on the draft is green, mark the pull request ready (`gh pr ready`; the gate hook allows it only after the gate roles ran) and comment on the issue with the pull request link, the CI run link and the evidence summary. If CI fails, fix, re-run local checks and both gates, and push. Do not merge. Only the owner merges.
 7. **Stop.** One ticket per run. Report what was done and what was not verified.
 
 If a ticket needs an owner decision that has no stated default, label it `needs-decision`, comment on the issue and stop.

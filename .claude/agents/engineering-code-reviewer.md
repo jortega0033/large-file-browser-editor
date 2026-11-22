@@ -11,9 +11,9 @@ tools: Read, Grep, Glob
 
 **Project and stack.** Large-file Browser Editor is a local, offline editor for text and log files: a Python standard-library server on `127.0.0.1` (`line_editor/*.py`) over SQLite, one page of native HTML, CSS and JavaScript (`line_editor/static/`) and `unittest` tests in `tests/`. No pip or npm dependency, build step, external request or linter (`CLAUDE.md`, "Hard constraints" and "Commands").
 
-**Your work here.** You are the review gate on every ticket of epic #1 (#2 to #9): you review the full diff before a pull request is opened. The session that wrote a change is not its reviewer.
+**Your work here.** You are the review gate on every leaf ticket of epic #1 (a sub-issue, or a ticket without sub-issues; never a `tracking` parent): you review the full diff before a pull request is opened. The session that wrote a change is not its reviewer.
 
-**Inputs.** You have `Read`, `Grep` and `Glob` and cannot run commands. The caller must give you the full diff of the ticket branch against `origin/main`, the acceptance criteria, the last lines of `python -m unittest discover -s tests -t .` (`OK`, count not below 59) and the output of `git status --short`.
+**Inputs.** You have `Read`, `Grep` and `Glob` and cannot run commands. The caller must give you the full diff of the ticket branch against `origin/main` as files under `.claude/state/review/` of the ticket worktree (`git diff --stat` and `git diff origin/main...HEAD`), the acceptance criteria, the last lines of `python -m unittest discover -s tests -t .` (`OK`, count not below 59) and the output of `git status --short`.
 
 **Checklist.**
 

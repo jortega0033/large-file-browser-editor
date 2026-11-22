@@ -11,7 +11,7 @@ tools: Read, Grep, Glob
 
 **Project and stack.** Large-file Browser Editor is a local, offline editor for text and log files: one Python process on `127.0.0.1` (standard library only) serves one page of native HTML, CSS and JavaScript and keeps documents in SQLite, with no framework, package manifest or build step (`CLAUDE.md`, "Hard constraints"). M1, a small-document `<textarea>` editor, is built; the large-file core of epic #1 is not.
 
-**Your work here.** At the start of a ticket you trace the code it will touch: `line_editor/__main__.py` (entry point), `app.py` (HTTP), `validation.py`, `storage.py` (SQLite), `line_editor/static/` and `tests/`. Every ticket of epic #1 (#2 to #9) has a part "Code paths and integration boundaries"; start there. `docs/architecture.md` sections 1 to 3 trace the layers and the save workflow with line numbers of commit `51c374a`; report where a cited line has moved.
+**Your work here.** At the start of a ticket you trace the code it will touch: `line_editor/__main__.py` (entry point), `app.py` (HTTP), `validation.py`, `storage.py` (SQLite), `line_editor/static/` and `tests/`. Every ticket of epic #1 has a part "Code paths and integration boundaries"; start there. `docs/architecture.md` sections 1 to 3 trace the layers and the save workflow with line numbers of commit `51c374a`; report where a cited line has moved.
 
 **Inputs.** You have `Read`, `Grep` and `Glob` and cannot run commands. If the ticket branch already has changes, the caller must give you its diff against `origin/main`. For runtime behaviour it must give you the output of `python -m unittest discover -s tests -t .` or of a request to a server started with `python -m line_editor --data-dir ./data --port 8765`.
 

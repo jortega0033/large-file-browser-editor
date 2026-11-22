@@ -30,6 +30,7 @@
 ## Budget
 - If token spend hits 80% of the daily cap in `loop-budget.md`, finish the current report and stop
 - If `loop-pause-all` is present in `loop-budget.md`, exit immediately
+- A budget, self-throttle or early-exit note goes into the run's entry in `loop-run-log.md` and under "Needs human" in `issue-triage-state.md`. Never write to `loop-budget.md` or to a `STATE.md` file, even though the generated `loop-budget` skill says to append under "Alerts This Period" and to note an exit in `STATE.md`. This file overrides that skill text; only a human edits "Alerts This Period"
 
 ---
 <!-- Add rules below in plain English. The loop reads this file verbatim. -->

@@ -57,6 +57,7 @@ Doctor exit codes: 0 healthy, 1 warnings, 2 blocked.
 
 - Sub-agent spawns per run: 0 at L1.
 - See `loop-budget.md`.
+- Override of generated skill text: `.claude/skills/loop-budget/SKILL.md` tells the loop to append a line to `loop-budget.md` under "Alerts This Period" on self-throttle and to leave an exit note in `STATE.md`. In this repository it does neither. Such notes go into `loop-run-log.md` and under "Needs human" in `issue-triage-state.md`, as `loop-constraints.md` (Budget) says. `loop-budget.md` is edited by a human only, and there is no `STATE.md`.
 
 ## MCP
 

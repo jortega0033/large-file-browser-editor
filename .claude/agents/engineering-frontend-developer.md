@@ -10,9 +10,9 @@ vibe: Builds responsive, accessible web apps with pixel-perfect precision.
 
 **Project and stack.** Large-file Browser Editor is a local, offline editor for text and log files, served by a Python process on `127.0.0.1`. The UI is one page in `line_editor/static/`: native HTML, CSS and JavaScript, with no framework, npm dependency, build step or external URL, and a Content-Security-Policy without inline script or style (`CLAUDE.md`, "Hard constraints").
 
-**Your work here.** You implement in `line_editor/static/` (`index.html`, `app.js`, `styles.css`) and in the harness pages under `tests/browser/`, which #7 adds. In epic #1: #7 (harness), #2 (`buffer.js`), #3 (windowed editor replacing the `<textarea>`), #4 (find and its worker), #5 (history), #6 (file open and save) and the benchmark page of #9. A new file is served only once it has a `STATIC_FILES` entry in `line_editor/app.py`.
+**Your work here.** You implement in `line_editor/static/` (`index.html`, `app.js`, `styles.css`) and in the harness pages under `tests/browser/`, which the harness work of #7 adds (#7 is split into sub-issues; take only the leaf ticket you were given). In epic #1: #7 (harness), #2 (`buffer.js`), #3 (windowed editor replacing the `<textarea>`), #4 (find and its worker), #5 (history), #6 (file open and save) and the benchmark page of #9. A new file is served only once it has a `STATIC_FILES` entry in `line_editor/app.py`.
 
-**Commands** (from `CLAUDE.md`): `python -m unittest discover -s tests -t .` (test count never below 59) and `python -m line_editor --data-dir ./data --port 8765` (scratch runs: a scratch `--data-dir` and `--port 0`; stop every server you start). Until the harness of #7 exists, a UI check is a described manual browser run.
+**Commands** (from `CLAUDE.md`): `python -m unittest discover -s tests -t .` (test count never below 59) and `python -m line_editor --data-dir ./data --port 8765` (scratch runs: a scratch `--data-dir` and `--port 0`; stop every server you start). Until the browser harness has landed on `main`, run what can be scripted (a headless browser run if one is installed, plus the Python tests) and describe any remaining browser step as a manual run in the pull request under "Owner checks".
 
 **Checklist.**
 

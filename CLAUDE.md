@@ -14,7 +14,7 @@ Both commands were run on 2026-11-22 on Windows 11 with Python 3.13.14, from the
 - There is no install step. Python 3.12 or newer is the only requirement. The README names 3.12; only 3.13.14 was run during preparation.
 - Both `--data-dir` and `--port` are required. `--port 0` picks a free port and prints it. Use it for scratch runs so that you do not collide with a server someone left on 8765.
 - There is no lint, format, type-check or build command; do not claim that any of these passed. CI runs the test command on Linux and Windows (see "Delivery workflow").
-- The browser page has no automated test at baseline. The epic's first ticket adds a browser harness; until it exists, a UI check is a manual browser run that you describe.
+- The browser page has no automated test at baseline. The first ticket of the epic (#7, split into sub-issues) adds a browser harness; until it has landed on `main`, run what can be scripted and describe the remaining browser step as a manual run under "Owner checks" in the pull request.
 - On Linux use `python3`. That was not re-run during preparation.
 - Stop every server you start. On Windows with the Microsoft Store Python, killing the `python` launcher from Git Bash leaves the real server process listening; stop it with Ctrl+C in its own terminal or by the port owner (see [docs/architecture.md](docs/architecture.md), section 7, item 10).
 - `data/` and `*.sqlite*` are ignored by Git; use a scratch `--data-dir` for experiments.
@@ -77,6 +77,7 @@ Report only what you ran and saw. For each ticket, capture:
 7. For schema changes: a run that opens a database created by the previous schema version and shows the documents intact.
 8. `git status --short` showing no stray files, and confirmation that every server and browser process started for the check was stopped.
 9. For a pull request: the order is local checks, Code Reviewer and Reality Checker on the recorded local evidence, a draft pull request, CI on that draft, and only then ready. CI green is checked by the driver before `gh pr ready` and the CI run link goes on the issue; it is not evidence the gates can judge, because the run does not exist until the draft is open.
+10. A step that needs a person ("by hand in a normal browser") is done as far as an agent can (scripted or headless run, with evidence) and the rest is listed under "Owner checks" in the pull request; Reality Checker accepts that only when the ticket marks the step as manual.
 
 State what was not verified. A README or PRD claim that you did not reproduce is a claim, not evidence.
 
@@ -108,9 +109,9 @@ Loop Engineering is set up with the `issue-triage` pattern at L1: report-only an
 ## Delivery workflow
 
 - **Tooling is installed, not ticketed.** Every open ticket is about app implementation (owner-decisions entry 3).
-- **Start and playbook.** The owner starts one ticket with [`/next-ticket`](.claude/skills/next-ticket/SKILL.md); it runs the [`implement-ticket`](.claude/skills/implement-ticket/SKILL.md) playbook. There is no scheduler.
+- **Start and playbook.** The owner starts one ticket with [`/next-ticket`](.claude/skills/next-ticket/SKILL.md); it runs the [`implement-ticket`](.claude/skills/implement-ticket/SKILL.md) playbook. It picks leaf tickets only: a ticket labelled `tracking` or with open sub-issues is a container and is never picked (an explicit number of one is refused and its open sub-issues are listed); the pull request of a parent's last sub-issue also says `Closes #<parent>`. It writes the review diff and evidence to `.claude/state/review/` before the gates, and after the draft pull request and push it ends its turn with "Draft pull request #N is waiting for CI" instead of polling. There is no scheduler.
 - **Review gate.** [`.claude/hooks/role_gate.py`](.claude/hooks/role_gate.py) blocks `gh pr create` and `gh pr ready` until Code Reviewer and Reality Checker ran after the last code edit, so no pull request is opened, not even a draft, with a gate not run. Order: local checks, both gates, draft pull request, CI, then ready only on green CI. `ROLE_GATE=off` in the environment Claude Code is started from switches it off for that session.
-- **Permissions.** [`.claude/settings.json`](.claude/settings.json): documented commands allowed; force pushes, pushes to `main`, `gh pr merge`, releases and reads of `.env` denied; edits to CI, agent configuration and Loop files ask first.
+- **Permissions.** [`.claude/settings.json`](.claude/settings.json): documented commands allowed; force pushes, pushes to `main`, `gh pr merge`, releases and reads of `.env` denied; edits to CI, agent configuration and Loop files ask first, at any depth, so the copies inside a ticket worktree ask too. A ticket never changes agent configuration.
 - **CI.** [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs the test command and the gate self-test on Linux and Windows. It runs on the draft pull request and must be green before the pull request is marked ready; the driver checks that, not Reality Checker. A failure means fix, re-run local checks and both gates, and push.
 - **Pull request.** Use [`.github/pull_request_template.md`](.github/pull_request_template.md). Labels: `status:ready`, `status:blocked`, `status:in-progress`, `needs-decision`.
 - **Changelog.** Every ticket pull request adds a line to [CHANGELOG.md](CHANGELOG.md) under Unreleased.

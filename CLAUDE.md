@@ -103,3 +103,14 @@ When asked to implement, continue or finish a GitHub issue, follow the playbook 
 ## Loop
 
 Loop Engineering is set up with the `issue-triage` pattern at L1: report-only and started by hand. It has no scheduler and makes no GitHub writes. See [LOOP.md](LOOP.md) and [loop-constraints.md](loop-constraints.md).
+
+## Delivery workflow
+
+- **Start and playbook.** The owner starts one ticket with [`/next-ticket`](.claude/skills/next-ticket/SKILL.md); it runs the [`implement-ticket`](.claude/skills/implement-ticket/SKILL.md) playbook. There is no scheduler.
+- **Review gate.** [`.claude/hooks/role_gate.py`](.claude/hooks/role_gate.py) blocks `gh pr create` and `gh pr ready` until Code Reviewer and Reality Checker ran after the last code edit. `ROLE_GATE=off` in the environment Claude Code is started from switches it off for that session.
+- **Permissions.** [`.claude/settings.json`](.claude/settings.json): documented commands allowed; force pushes, pushes to `main`, `gh pr merge`, releases and reads of `.env` denied; edits to CI, agent configuration and Loop files ask first.
+- **CI.** [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs the test command and the gate self-test on Linux and Windows. It must be green before a pull request is marked ready, and counts as evidence for "done".
+- **Pull request.** Use [`.github/pull_request_template.md`](.github/pull_request_template.md). Labels: `status:ready`, `status:blocked`, `status:in-progress`, `needs-decision`.
+- **Changelog.** Every ticket pull request adds a line to [CHANGELOG.md](CHANGELOG.md) under Unreleased.
+- **UI and copy.** [docs/ui-quality.md](docs/ui-quality.md) holds the ten binding UI rules; the `ui-ux-pro-max` and `unslop` skills in `.claude/skills/` are used for UI work and for copy.
+- **Decisions and releases.** [docs/owner-decisions.md](docs/owner-decisions.md) records the owner's decisions. Only the owner merges and releases ([docs/RELEASING.md](docs/RELEASING.md)).

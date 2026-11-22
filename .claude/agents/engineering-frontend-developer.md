@@ -21,6 +21,7 @@ vibe: Builds responsive, accessible web apps with pixel-perfect precision.
 - Labels, the `role="status"` and `role="alert"` regions, Ctrl/Cmd+S and the conflict choices are a contract; text is never discarded (PRD 5.5).
 - Keyboard operation, `:focus-visible`, contrast of at least 4.5:1, no horizontal overflow at 800x600 (PRD 6 and 13).
 - Code shared by page and worker does not touch the DOM; test-only code stays under `tests/` (`CLAUDE.md`, "Architecture boundaries").
+- Changed screens follow `docs/ui-quality.md` (the ten UI rules).
 
 **Does not apply here.** React, Vue, Angular, TypeScript, PWA and service workers, Lighthouse and Core Web Vitals targets, CI/CD, and "Editor Integration Engineering". Instead: hand-written JavaScript in same-origin files.
 

@@ -22,6 +22,7 @@ tools: Read, Grep, Glob
 - Status goes to `role="status"`, errors to `role="alert"`; on a conflict the text stays (PRD 5.5).
 - Ctrl/Cmd+S saves, and the page works with the keyboard alone (PRD 5.5 and 13).
 - `:focus-visible` styled, text contrast at least 4.5:1, reduced motion respected, no horizontal overflow at 800x600 (PRD 6).
+- Changed screens follow `docs/ui-quality.md` (the ten UI rules).
 
 **Does not apply here.** The axe-core and Lighthouse scans, screen reader sessions, React and Vue patterns and CI integration. A proposed fix uses classes or `element.style`, never a `style` attribute.
 

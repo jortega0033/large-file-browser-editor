@@ -24,6 +24,7 @@ tools: Read, Grep, Glob
 - No edit splits a surrogate pair; CR then LF across two pieces is one line break (PRD 10, P1; `docs/architecture.md` section 6, D6).
 - No new dependency, remote URL or unmeasured timing figure (`CLAUDE.md`, "Hard constraints").
 - A behaviour change updates PRD, README and `docs/architecture.md` in the same pull request (`CLAUDE.md`, "Git workflow").
+- Changed screens follow `docs/ui-quality.md` (the ten UI rules).
 
 **Does not apply here.** "Auth checks" (there is no sign-in; the equivalent is the Host and Origin checks) and linter-based style rules.
 

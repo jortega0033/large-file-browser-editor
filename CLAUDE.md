@@ -4,17 +4,18 @@ Large-file Browser Editor is a local, offline editor for text and log files: a P
 
 ## Commands
 
-Both commands were run on 2026-11-22 on Windows 11 with Python 3.13.14, from the repository root.
+The test and run commands were run on 2026-11-22 on Windows 11 with Python 3.13.14, from the repository root.
 
 | Purpose | Command | Observed |
 |---|---|---|
-| Test | `python -m unittest discover -s tests -t .` | `Ran 59 tests`, `OK`, about 16 seconds |
+| Test | `python -m unittest discover -s tests -t .` | `Ran 59 tests`, `OK`, about 16 seconds at baseline; `Ran 99 tests`, `OK`, about 21 seconds with the 40 tests of the browser harness (#7) |
+| Browser checks | `python -m tests.browser.run_headless` | `selftest`: 52 checks passed in Chrome 157 on Windows 11 (8 CPUs), 2026-11-22. Needs an installed Chrome, Edge or Chromium (`LFBE_BROWSER` names one). Runs the default browser suites headless in real time and exits 0 when all pass, 3 when no browser is found. See README "Browser harness". |
 | Run | `python -m line_editor --data-dir ./data --port 8765` | Observed with a scratch data directory and another port (`--port 8797`): it printed `Serving on http://127.0.0.1:8797/`. The command as shown, with `./data` and port 8765, is the README form and was not run in that exact form. Open the URL it prints. |
 
 - There is no install step. Python 3.12 or newer is the only requirement. The README names 3.12; only 3.13.14 was run during preparation.
 - Both `--data-dir` and `--port` are required. `--port 0` picks a free port and prints it. Use it for scratch runs so that you do not collide with a server someone left on 8765.
 - There is no lint, format, type-check or build command; do not claim that any of these passed. CI runs the test command on Linux and Windows (see "Delivery workflow").
-- The browser page has no automated test at baseline. The epic's first ticket adds a browser harness; until it exists, a UI check is a manual browser run that you describe.
+- The browser page has no automated test at baseline. The browser harness (`python -m tests.browser.run_headless`, ticket #7) is the base for automated checks; until a suite covers the page, a UI check is a manual browser run that you describe.
 - On Linux use `python3`. That was not re-run during preparation.
 - Stop every server you start. On Windows with the Microsoft Store Python, killing the `python` launcher from Git Bash leaves the real server process listening; stop it with Ctrl+C in its own terminal or by the port owner (see [docs/architecture.md](docs/architecture.md), section 7, item 10).
 - `data/` and `*.sqlite*` are ignored by Git; use a scratch `--data-dir` for experiments.

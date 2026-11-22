@@ -6,4 +6,5 @@ All notable changes are listed here, in the [Keep a Changelog](https://keepachan
 
 ### Added
 
+- Added the browser test harness: test-only server, `run_headless` runner, `mulberry32` generator and fixture generator in JavaScript and Python, and a self-test page (#7).
 - Added the delivery workflow: review gate hook, CI, pull request template, UI quality rules and owner decisions record.

@@ -147,7 +147,7 @@ Dependencies: P1 → P2 → P3; P1+P2 → P4; P5 last. Any new external package,
 
 ## 13. Test plan
 
-Automated (`python -m unittest discover -s tests -t .`): API shape and codes, limits at boundaries, astral characters, conflict and concurrent-save race, restart persistence, migration idempotence and newer-schema refusal, static allowlist and traversal, Host/Origin/CORS, CLI bad-directory exit codes, sample content. Manual browser smoke: section 12 plus keyboard-only use, 800×600 resize, focus visibility. The browser UI has no automated test in M1. Later tickets add the browser harnesses named in their acceptance.
+Automated (`python -m unittest discover -s tests -t .`): API shape and codes, limits at boundaries, astral characters, conflict and concurrent-save race, restart persistence, migration idempotence and newer-schema refusal, static allowlist and traversal, Host/Origin/CORS, CLI bad-directory exit codes, sample content. Manual browser smoke: section 12 plus keyboard-only use, 800×600 resize, focus visibility. The browser UI has no automated test in M1. The browser harness (`python -m tests.browser.run_headless`, see the README) runs plain pages under `tests/browser/` in an installed Chromium-family browser, headless and in real time, under the application's Content-Security-Policy, and receives each page's report on a test-only route; its Python parts (fixture tool, harness server, runner) are covered by `tests/test_browser_harness.py`, which starts no browser. Later tickets add their own suites to it.
 
 ## 14. Open choices
 

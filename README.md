@@ -53,7 +53,21 @@ Documents live in `<data-dir>/line_editor.sqlite3` (WAL mode). Each save increme
 python -m unittest discover -s tests -t .
 ```
 
-Use `python3` on Linux. Tests use temporary directories. The browser UI has no automated tests in M1.
+Use `python3` on Linux. Tests use temporary directories. The editor page itself has no automated tests in M1; the browser harness below is the base for them.
+
+### Browser harness
+
+```
+python -m tests.browser.run_headless
+```
+
+Runs the default set of browser suites with an installed Chrome, Edge or Chromium, headless and in real time. No package, build step or network is involved. The runner starts a test-only server (`tests/browser/serve.py`) on a free loopback port, starts the browser once per suite with a throwaway profile, and waits for the page to post its JSON report to the server. It prints one line per check and exits 0 when all passed, 1 when a check failed, no report arrived in time or the browser ended early, 2 on a usage error (such as an unknown suite name) and 3 when no browser is found (`skipped`).
+
+- `python -m tests.browser.run_headless selftest` runs one suite; `--timeout <seconds>` replaces the suite's wait limit. A suite name may carry a query, for example `selftest?fail=1`.
+- `LFBE_BROWSER` names the browser program (a path, or a name found on `PATH`); without it the runner tries the usual Chrome, Edge and Chromium locations on Windows, Linux and macOS.
+- `python -m tests.browser.serve --port 0` serves the same pages for a manual run; open `/tests/browser/selftest.html` from the printed URL.
+- `python -m tests.browser.make_fixture --lines 1000000 --eol lf --out <file>` writes the generated fixture and prints its byte length and SHA-256. The same bytes come out of `fixtureChunks` in the browser.
+- The Python tests of the harness server, the fixture tool and the runner run with the unit tests and start no browser.
 
 ## Security notes
 

@@ -22,10 +22,8 @@
       "Bash(gh pr ready *)",
       "Bash(python .claude/hooks/role_gate.py --self-test)",
       "Bash(python -m unittest discover -s tests -t .)",
-      "Bash(python -m unittest *)",
       "Bash(python -m line_editor *)",
-      "Bash(python .claude/skills/ui-ux-pro-max/scripts/search.py *)",
-      "Bash(python .claude/skills/unslop/scripts/banned_phrase_scan.py *)"
+      "Bash(python .claude/skills/ui-ux-pro-max/scripts/search.py *)"
     ],
     "ask": [
       "Edit(/.github/**)",

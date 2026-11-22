@@ -4,6 +4,6 @@ All notable changes are listed here, in the [Keep a Changelog](https://keepachan
 
 ## [Unreleased]
 
-### Changed
+### Added
 
 - Added the delivery workflow: review gate hook, CI, pull request template, UI quality rules and owner decisions record.

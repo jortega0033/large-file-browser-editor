@@ -36,6 +36,8 @@ Entry 11 (Rust verified in CI only) does not apply: this repository has no Rust.
 | #5 | Undo for M1 text documents | Session only; save and conflict behaviour unchanged |
 | #6 | Saving a file | Download only; Ctrl/Cmd+S runs Save to file; no File System Access API |
 | #6 | Byte order mark, NUL, size cap, several dropped files | BOM kept and drawn with zero width; NUL kept with a placeholder; 512 MiB cap; first file used |
+| #5, #6 | Opening a file from disk | Becomes a `chunked` document with a recovery copy |
+| #6 | Save and Save as copy | Off for file documents; the download is the only save |
 | #7 | Random generator and mixed line endings | `mulberry32`; line i ends CRLF when the i-th output is odd |
 | #7 | Headless figures | Printed as measurements; published figures come from a normal browser window |
 | #8 | Chunk routes and limits | Route shapes as in the ticket; at most 512 chunks per generation; NUL allowed in chunks |

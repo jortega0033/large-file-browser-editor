@@ -13,7 +13,7 @@ Both commands were run on 2026-11-22 on Windows 11 with Python 3.13.14, from the
 
 - There is no install step. Python 3.12 or newer is the only requirement. The README names 3.12; only 3.13.14 was run during preparation.
 - Both `--data-dir` and `--port` are required. `--port 0` picks a free port and prints it. Use it for scratch runs so that you do not collide with a server someone left on 8765.
-- There is no lint, format, type-check or build command, and no CI workflow. Do not claim that any of these passed.
+- There is no lint, format, type-check or build command; do not claim that any of these passed. CI runs the test command on Linux and Windows (see "Delivery workflow").
 - The browser page has no automated test at baseline. The epic's first ticket adds a browser harness; until it exists, a UI check is a manual browser run that you describe.
 - On Linux use `python3`. That was not re-run during preparation.
 - Stop every server you start. On Windows with the Microsoft Store Python, killing the `python` launcher from Git Bash leaves the real server process listening; stop it with Ctrl+C in its own terminal or by the port owner (see [docs/architecture.md](docs/architecture.md), section 7, item 10).
@@ -56,7 +56,7 @@ Details and source citations are in [docs/architecture.md](docs/architecture.md)
 
 ## Git workflow
 
-Observed state at preparation time: `main` is the default branch with one commit, it is not protected, there is no CI and there are no contribution rules in the repository. The rules below are the working defaults until the owner replaces them.
+Observed state at preparation time: `main` is the default branch with one commit, it is not protected, there was no CI (CI was added later by the SDLC kit, see "Delivery workflow") and there were no contribution rules in the repository. The rules below are the working defaults until the owner replaces them.
 
 - Never commit to `main` directly. Branch from the tip of `origin/main`, one branch per ticket, named `<type>/<issue-number>-<short-slug>` (for example `feat/2-piece-table-buffer`).
 - Keep commits small and use the existing subject style (`feat: ...`, `fix: ...`, `docs: ...`, `test: ...`, `chore: ...`).
@@ -76,6 +76,7 @@ Report only what you ran and saw. For each ticket, capture:
 6. For any timing or memory number: the machine (CPU count), operating system, browser and version, fixture, cold or warm, and the date. State that it is one machine's measurement.
 7. For schema changes: a run that opens a database created by the previous schema version and shows the documents intact.
 8. `git status --short` showing no stray files, and confirmation that every server and browser process started for the check was stopped.
+9. For a pull request: CI green on the pull request, as the Delivery workflow requires.
 
 State what was not verified. A README or PRD claim that you did not reproduce is a claim, not evidence.
 
@@ -106,6 +107,7 @@ Loop Engineering is set up with the `issue-triage` pattern at L1: report-only an
 
 ## Delivery workflow
 
+- **Tooling is installed, not ticketed.** Every open ticket is about app implementation (owner-decisions entry 3).
 - **Start and playbook.** The owner starts one ticket with [`/next-ticket`](.claude/skills/next-ticket/SKILL.md); it runs the [`implement-ticket`](.claude/skills/implement-ticket/SKILL.md) playbook. There is no scheduler.
 - **Review gate.** [`.claude/hooks/role_gate.py`](.claude/hooks/role_gate.py) blocks `gh pr create` and `gh pr ready` until Code Reviewer and Reality Checker ran after the last code edit. `ROLE_GATE=off` in the environment Claude Code is started from switches it off for that session.
 - **Permissions.** [`.claude/settings.json`](.claude/settings.json): documented commands allowed; force pushes, pushes to `main`, `gh pr merge`, releases and reads of `.env` denied; edits to CI, agent configuration and Loop files ask first.

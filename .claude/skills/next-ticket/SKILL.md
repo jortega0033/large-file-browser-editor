@@ -13,7 +13,7 @@ Labels: `status:ready`, `status:blocked`, `status:in-progress`, `needs-decision`
 
 ## Steps
 
-1. **Refresh the queue.** `gh issue list --state open --limit 100` and `gh issue view 1`. A `status:blocked` ticket whose blockers are all closed is ready: report it (the label change is the owner's or the orchestrator's if you lack permission).
+1. **Refresh the queue.** `gh issue list --state open --limit 100` and `gh issue view 1`. A `status:blocked` ticket whose blockers are all closed is ready: set `status:ready` on it. If you lack permission, report it instead and leave the label change to the owner or the orchestrator.
 2. **Pick.** With an issue number, use it. Otherwise take the first `status:ready` child of #1 in the epic's dependency order that is neither `status:in-progress` nor `needs-decision`. If none, report that and stop.
 3. **Claim.** Label the issue `status:in-progress`.
 4. **Branch in a fresh worktree** from the tip of `origin/main`, named `<type>/<issue-number>-<short-slug>` as `CLAUDE.md` ("Git workflow") says: `git fetch origin` then `git worktree add ../<repo>-<issue-number> -b <branch> origin/main`. Never work on `main`.

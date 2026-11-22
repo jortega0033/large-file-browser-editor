@@ -76,7 +76,7 @@ Report only what you ran and saw. For each ticket, capture:
 6. For any timing or memory number: the machine (CPU count), operating system, browser and version, fixture, cold or warm, and the date. State that it is one machine's measurement.
 7. For schema changes: a run that opens a database created by the previous schema version and shows the documents intact.
 8. `git status --short` showing no stray files, and confirmation that every server and browser process started for the check was stopped.
-9. For a pull request: CI green on the pull request, as the Delivery workflow requires.
+9. For a pull request: the order is local checks, Code Reviewer and Reality Checker on the recorded local evidence, a draft pull request, CI on that draft, and only then ready. CI green is checked by the driver before `gh pr ready` and the CI run link goes on the issue; it is not evidence the gates can judge, because the run does not exist until the draft is open.
 
 State what was not verified. A README or PRD claim that you did not reproduce is a claim, not evidence.
 
@@ -109,9 +109,9 @@ Loop Engineering is set up with the `issue-triage` pattern at L1: report-only an
 
 - **Tooling is installed, not ticketed.** Every open ticket is about app implementation (owner-decisions entry 3).
 - **Start and playbook.** The owner starts one ticket with [`/next-ticket`](.claude/skills/next-ticket/SKILL.md); it runs the [`implement-ticket`](.claude/skills/implement-ticket/SKILL.md) playbook. There is no scheduler.
-- **Review gate.** [`.claude/hooks/role_gate.py`](.claude/hooks/role_gate.py) blocks `gh pr create` and `gh pr ready` until Code Reviewer and Reality Checker ran after the last code edit. `ROLE_GATE=off` in the environment Claude Code is started from switches it off for that session.
+- **Review gate.** [`.claude/hooks/role_gate.py`](.claude/hooks/role_gate.py) blocks `gh pr create` and `gh pr ready` until Code Reviewer and Reality Checker ran after the last code edit, so no pull request is opened, not even a draft, with a gate not run. Order: local checks, both gates, draft pull request, CI, then ready only on green CI. `ROLE_GATE=off` in the environment Claude Code is started from switches it off for that session.
 - **Permissions.** [`.claude/settings.json`](.claude/settings.json): documented commands allowed; force pushes, pushes to `main`, `gh pr merge`, releases and reads of `.env` denied; edits to CI, agent configuration and Loop files ask first.
-- **CI.** [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs the test command and the gate self-test on Linux and Windows. It must be green before a pull request is marked ready, and counts as evidence for "done".
+- **CI.** [`.github/workflows/ci.yml`](.github/workflows/ci.yml) runs the test command and the gate self-test on Linux and Windows. It runs on the draft pull request and must be green before the pull request is marked ready; the driver checks that, not Reality Checker. A failure means fix, re-run local checks and both gates, and push.
 - **Pull request.** Use [`.github/pull_request_template.md`](.github/pull_request_template.md). Labels: `status:ready`, `status:blocked`, `status:in-progress`, `needs-decision`.
 - **Changelog.** Every ticket pull request adds a line to [CHANGELOG.md](CHANGELOG.md) under Unreleased.
 - **UI and copy.** [docs/ui-quality.md](docs/ui-quality.md) holds the ten binding UI rules; the `ui-ux-pro-max` and `unslop` skills in `.claude/skills/` are used for UI work and for copy.

@@ -20,10 +20,10 @@ The project subagents in `.claude/agents/` are part of the work. Delegate to the
 6. **Test.** Add or change tests for every acceptance criterion and material edge case, then run the checks listed in `CLAUDE.md`. Record each command and its result.
 7. **Specialist review.** Run every role in the table "After coding" whose trigger matches the change.
 8. **Review gate, always.** Run Code Reviewer on the full diff. Fix every material finding, re-run the checks, and have the reviewer look again until no material finding is left.
-9. **Acceptance gate, always.** Run Reality Checker with the ticket's acceptance criteria and the evidence you produced. Do not call the ticket done unless it passes.
+9. **Acceptance gate, always.** Run Reality Checker with the ticket's acceptance criteria and the recorded local evidence. It checks that the documented checks ran locally and passed and that CI is configured to run them; it does not confirm a CI result. Do not open a pull request unless it passes.
 10. **UI check.** For a ticket that changes a screen, check every changed screen against `docs/ui-quality.md` and record the result.
 11. **Copy check.** Run the `unslop` skill over user-facing copy, documentation and the pull request text before the pull request is opened.
-12. **Hand off.** Capture the evidence `CLAUDE.md` asks for. Fill in `.github/pull_request_template.md` and add one line to `CHANGELOG.md` under Unreleased. Open a draft pull request that names the issue, wait for CI to be green, then mark it ready (the gate hook blocks `gh pr create` and `gh pr ready` until the gate roles ran after the last code edit). Only the owner merges; never merge.
+12. **Hand off.** Capture the evidence `CLAUDE.md` asks for. Fill in `.github/pull_request_template.md` and add one line to `CHANGELOG.md` under Unreleased. Only after both gates passed, open a draft pull request that names the issue (the gate hook blocks `gh pr create` and `gh pr ready` until the gate roles ran after the last code edit). CI runs on the draft; if it fails, fix, re-run the local checks and both gates, and push. When CI is green, mark it ready with `gh pr ready` and comment on the issue with the CI run link. Never mark ready with a gate not run or CI not green. Only the owner merges; never merge.
 
 ## Roles
 

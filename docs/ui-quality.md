@@ -22,4 +22,4 @@ This repository's own constraints still apply: no external font, image or script
 - The Frontend Developer, Accessibility Auditor and Code Reviewer roles name this file in their checklists (UI Designer and UX Architect are not installed here).
 - Enforcement is the review gate: Code Reviewer runs on every ticket. Rule 1 can be linted; rule 2 cannot be detected reliably from CSS, so a reviewer checks it by reading.
 
-The colours, spacing, radii and motion come from the shared Pipenzo tokens in `line_editor/static/tokens.css`; see [design-tokens.md](design-tokens.md).
+Colours come from the shared Pipenzo tokens in `line_editor/static/tokens.css`; see [design-tokens.md](design-tokens.md). New UI adds no colour literal and should prefer the `--space-*`, `--radius-*` and `--dur-*` tokens; the existing spacing and radii were left unchanged.

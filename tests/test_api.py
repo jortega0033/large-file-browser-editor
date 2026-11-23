@@ -31,6 +31,7 @@ class BasicTests(ServerCase):
         for path, ctype in (
             ("/static/app.js", "javascript"),
             ("/static/styles.css", "text/css"),
+            ("/static/tokens.css", "text/css"),
         ):
             status, resp, _ = self.request("GET", path)
             self.assertEqual(status, 200, path)

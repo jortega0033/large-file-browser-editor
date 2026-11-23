@@ -13,6 +13,8 @@ Ten rules for every screen and every piece of user-facing text in this repositor
 9. Dense, aligned layouts on a consistent spacing scale. No card grid where a table or a list is the right form.
 10. User-facing copy is plain and specific: no filler, no exclamation marks, and the same word for the same thing everywhere.
 
+Rule 8 is read with [design-tokens.md](design-tokens.md) and owner decision 14: the accent also marks the current step, and `--focus` is a focus indicator, exempt from the accent limit.
+
 This repository's own constraints still apply: no external font, image or script, and no inline style (see `CLAUDE.md`, "Hard constraints").
 
 ## How the rules are applied

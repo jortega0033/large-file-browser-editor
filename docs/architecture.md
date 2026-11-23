@@ -21,7 +21,7 @@ A single-process, three-layer application on the Python standard library with a 
 | Limits and input rules | `line_editor/validation.py` | The four limits (lines 4-7), `ApiError` (12-30), and pure validators for title, text, `base_revision` and the payload shape (37-99). No I/O. |
 | Persistence | `line_editor/storage.py` | `Store` over one SQLite file. A new connection per operation (`_conn`, 106-116), ordered forward-only migrations (`MIGRATIONS`, 14-29; `_migrate`, 126-148), one `BEGIN IMMEDIATE` transaction per write. Raises domain exceptions (`NotFound`, `DocumentLimit`, `RevisionConflict`, `StoreError`, `SchemaTooNew`); `app.py` maps them to HTTP status codes (`app.py:110-125`, `297-305`). |
 | Fixture | `line_editor/sample.py` | The deterministic 200-line sample of PRD 5.6. Served by `GET /api/v1/sample`, never stored. |
-| UI | `line_editor/static/index.html`, `app.js`, `styles.css` | One page, one IIFE (`app.js`, 340 lines), a plain `<textarea>` (`index.html:32`). |
+| UI | `line_editor/static/index.html`, `app.js`, `styles.css`, `tokens.css` (shared tokens, see design-tokens.md) | One page, one IIFE (`app.js`, 340 lines), a plain `<textarea>` (`index.html:32`). |
 
 Tests: `tests/__init__.py` holds `ServerCase`, which starts a real server on an ephemeral loopback port over a temporary data directory. `test_api.py` (HTTP contract, limits, security), `test_storage.py`, `test_validation.py` and `test_cli.py` (subprocess runs of the CLI) hold 59 tests. [RUN] No test loads the page in a browser.
 

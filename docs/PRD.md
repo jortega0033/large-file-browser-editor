@@ -31,7 +31,7 @@ In M1: the items above only. Out of scope everywhere: paid services, accounts, r
 
 - Python 3.12, standard library only: `http.server.ThreadingHTTPServer`, `sqlite3`, `argparse`, `json`.
 - Static HTML, CSS and native JavaScript from `line_editor/static/`. No build step, no external URL, system fonts.
-- Layout: `line_editor/{__main__,app,storage,validation,sample}.py`, `line_editor/static/{index.html,app.js,styles.css}`, `tests/`.
+- Layout: `line_editor/{__main__,app,storage,validation,sample}.py`, `line_editor/static/{index.html,app.js,styles.css,tokens.css}`, `tests/`.
 - Launch: `python -m line_editor --data-dir <path> --port <port>` (Windows), `python3 -m ...` (Linux). Binds `127.0.0.1` only; `--port 0` picks a free port.
 
 ## 5. Contracts **[Implemented M1]**
@@ -52,7 +52,7 @@ Errors: `{"error":{"code","message","field?"}}`. Document: `{id, title, text, re
 | Request | Success | Failures |
 |---|---|---|
 | `GET /` | HTML | – |
-| `GET /static/app.js`, `/static/styles.css` | file | other `/static/*` is 404 |
+| `GET /static/app.js`, `/static/styles.css`, `/static/tokens.css` | file | other `/static/*` is 404 |
 | `GET /api/v1/health` | 200 `{"status":"ok","version":"0.1.0","schema_version":1}` | – |
 | `GET /api/v1/sample` | 200 `{"title":"Sample log","text":...}` (not stored) | – |
 | `GET /api/v1/documents` | 200 `{"documents":[...]}` newest first | – |

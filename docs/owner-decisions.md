@@ -15,6 +15,7 @@ Decisions the owner made for this repository on 2026-11-22. Changing any entry n
 | 9 | 2026-11-22 | Permission rules: documented commands are allowed; force pushes, pushes to the default branch, merges, releases and reads of secrets are denied; edits to CI, agent configuration and Loop files ask first. | `.claude/settings.json` |
 | 10 | 2026-11-22 | Open decisions on tickets are settled with the ticket's stated default (list below). | the epic issue #1 and its children |
 | 12 | 2026-11-22 | The ten UI rules in `docs/ui-quality.md` are binding, and the `ui-ux-pro-max` and `unslop` skills are installed and used for UI work and for copy. | `docs/ui-quality.md`, `.claude/skills/ui-ux-pro-max/`, `.claude/skills/unslop/` |
+| 13 | 2026-11-23 | Visual system: Pipenzo Flow look tokens (docs/design-tokens.md). SDLC kit version: jortega0033/sdlc-kit v1.0.0. | `line_editor/static/tokens.css`, `docs/design-tokens.md` |
 
 Entry 11 (Rust verified in CI only) does not apply: this repository has no Rust.
 

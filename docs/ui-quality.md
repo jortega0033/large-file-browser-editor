@@ -21,3 +21,5 @@ This repository's own constraints still apply: no external font, image or script
 - User-facing copy, documentation and pull request text go through the `unslop` skill before the pull request is opened.
 - The Frontend Developer, Accessibility Auditor and Code Reviewer roles name this file in their checklists (UI Designer and UX Architect are not installed here).
 - Enforcement is the review gate: Code Reviewer runs on every ticket. Rule 1 can be linted; rule 2 cannot be detected reliably from CSS, so a reviewer checks it by reading.
+
+The colours, spacing, radii and motion come from the shared Pipenzo tokens in `line_editor/static/tokens.css`; see [design-tokens.md](design-tokens.md).

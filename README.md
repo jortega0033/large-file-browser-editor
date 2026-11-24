@@ -8,6 +8,25 @@ Full spec: [docs/PRD.md](docs/PRD.md).
 
 See [docs/architecture.md](docs/architecture.md) for the code layout, the traced save workflow, invariants, and the differences between the PRD and the code. Instructions for coding agents are in [CLAUDE.md](CLAUDE.md).
 
+## Program goal
+
+Build a browser code and log editor for files far larger than memory: edit 100 GB files with instant response, full Unicode, syntax, structure, search and collaboration, never losing a byte, with no editor library.
+
+The program is planned ([#54](https://github.com/jortega0033/large-file-browser-editor/issues/54)). Phase 1 is the current epic [#1](https://github.com/jortega0033/large-file-browser-editor/issues/1) and the only phase with tickets.
+
+**Score.** Share of a fixed set of editing and crash scenarios, on files up to 100 GB, where the saved bytes equal an independent model and every keystroke stays under 16 ms.
+
+| Phase | Content | Hours (rough) | Issue |
+|---|---|---|---|
+| 1 | The current epic and its tickets | 77 to 122 | [#1](https://github.com/jortega0033/large-file-browser-editor/issues/1) |
+| 2 | Beyond memory | 140 to 240 | [#55](https://github.com/jortega0033/large-file-browser-editor/issues/55) |
+| 3 | Unicode and rendering | 130 to 220 | [#56](https://github.com/jortega0033/large-file-browser-editor/issues/56) |
+| 4 | Search and structure | 120 to 200 | [#57](https://github.com/jortega0033/large-file-browser-editor/issues/57) |
+| 5 | Incremental parsing | 150 to 250 | [#58](https://github.com/jortega0033/large-file-browser-editor/issues/58) |
+| 6 | Collaboration and history | 140 to 240 | [#59](https://github.com/jortega0033/large-file-browser-editor/issues/59) |
+
+About 760 to 1270 engineer hours in total: rough estimates, not measurements. The numbers in the score and the finish lines are targets until a run shows them. Only phase 1 has tickets to work; the sub-issues of a later phase are written when it starts. No single session is expected to reach the end.
+
 ## Requirements
 
 Python 3.12. Standard library only. No build step, no packages, no network.

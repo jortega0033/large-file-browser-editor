@@ -1,5 +1,7 @@
 # Large-file Browser Editor: Product Requirements and Technical Spec
 
+> This document specifies phase 1 of the program in [#54](https://github.com/jortega0033/large-file-browser-editor/issues/54). Hour figures in it are early estimates for that phase; its open tickets add up to 77 to 122 hours (2026-11-24). Work that it defers is planned in the later phases only where the program names it.
+
 Status legend: **[Implemented M1]** is implemented in this repository. See the [baseline verification](../README.md#baseline-verification) for observed checks. **[Planned]** is future work with no code.
 
 How the baseline is built, what was re-checked against the source, and where this document and the code differ is recorded in [architecture.md](architecture.md).

@@ -60,3 +60,14 @@ No ticket in the epic is missing a stated default. If one is found later, take t
 | D4 | Linking: a ticket that creates a page or its static allowlist links `tokens.css` before any other stylesheet and serves it (allowlist and its test). | Recommended by the orchestrator, adopted under the owner's delegation of 2026-11-23. |
 
 D5 (New plan button in `jortega0033/release-dependency-planner`, ticket release-dependency-planner#11) does not apply to this repository.
+
+## Program decisions (owner, 2026-11-24)
+
+The owner accepted the goal and each suggestion below. They apply from the phase they name; the rules of `CLAUDE.md` hold for phase 1 as written.
+
+| Decision | Implemented in |
+|---|---|
+| The repository has a program goal above phase 1: a browser editor for files far larger than memory, in six phases. | Program issue #54 |
+| "No remote sync" and "no accounts" stay. Collaboration is tested on loopback only. | Program issue #54 |
+| A Python server may be too slow at 100 GB. Suggested: keep it as the reference and decide about WebAssembly when phase 2 starts. | Program issue #54 |
+| The Unicode test files have their own licence. Suggested: fetch at a pinned version and run from outside the repository. | Program issue #54 |

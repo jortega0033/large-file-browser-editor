@@ -6,4 +6,5 @@ All notable changes are listed here, in the [Keep a Changelog](https://keepachan
 
 ### Added
 
+- Program goal, score and phases 1 to 6 (#54).
 - Added the delivery workflow: review gate hook, CI, pull request template, UI quality rules and owner decisions record.
